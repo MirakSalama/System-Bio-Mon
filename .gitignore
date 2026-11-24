@@ -1,0 +1,14 @@
+node_modules/
+target/
+/release/
+/app/src-tauri/gen/
+/app/src-tauri/icons/android/
+/app/src-tauri/icons/ios/
+/app/src-tauri/resources/sensors/HardwareSensors.exe
+/daemon/config.json
+/daemon/.venv_checked
+__pycache__/
+*.pyc
+*.log
+.env
+.env.*

@@ -1,0 +1,12 @@
+Intel PresentMon standalone console, version 2.4.1, x64
+Publisher: Intel Corporation
+Release: https://github.com/GameTechDev/PresentMon/releases/tag/v2.4.1
+Binary: https://github.com/GameTechDev/PresentMon/releases/download/v2.4.1/PresentMon-2.4.1-x64.exe
+Bytes: 927304
+SHA-256: d74183e7ae630f72cd3690be0373ecbfdc6cbb86578148aab8fa2a7166068f34
+License: https://raw.githubusercontent.com/GameTechDev/PresentMon/v2.4.1/LICENSE.txt
+License SHA-256: 4c949341b1893c8c6ad82f7fb4eedf622cd1fd9c22a9af8f19b2dac19d1947b6
+
+The upstream binary is distributed unmodified as PresentMon.exe alongside its
+MIT license. To reproduce these resources, download the two pinned files and
+verify both SHA-256 hashes. Building or running the app uses the bundled copies.

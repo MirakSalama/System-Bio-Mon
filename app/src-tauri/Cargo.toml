@@ -1,0 +1,33 @@
+[package]
+name = "system-bio-mon"
+version = "1.0.0"
+license = "MIT"
+description = "Windows hardware and game-performance monitor"
+edition = "2021"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+amd-adlx = { path = "vendor/amd-adlx" }
+axum = { version = "0.8", default-features = false }
+getrandom = "0.3"
+hyper = { version = "1", features = ["http1", "server"] }
+hyper-util = { version = "0.1", features = ["service", "tokio"] }
+qrcodegen = "1.8"
+tokio = { version = "1", features = ["macros", "net", "rt", "sync", "time"] }
+tauri = { version = "2", features = ["tray-icon"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sysinfo = "0.33"
+
+[target.'cfg(windows)'.dependencies]
+webview2-com = "0.39"
+windows-core = "0.62"
+windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_Graphics_Gdi", "Win32_Security", "Win32_System_Diagnostics_Etw", "Win32_System_JobObjects", "Win32_System_Threading", "Win32_System_Time", "Win32_UI_Shell", "Win32_UI_WindowsAndMessaging"] }
+
+[dev-dependencies]
+quircs = "0.10"
+
+[profile.dev]
+incremental = true

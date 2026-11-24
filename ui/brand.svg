@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">System Bio Mon</title>
+  <desc id="desc">A cyan pulse inside a dark, clipped-corner processor with a magenta status light.</desc>
+  <path d="M24 4h78l22 22v76l-22 22H26L4 102V24Z" fill="#101823"/>
+  <path d="M82 12H28L12 28v70l18 18h68l18-18V43" fill="none" stroke="#55eddf" stroke-width="6"/>
+  <path d="M89 12h10l17 17v7" fill="none" stroke="#ff559e" stroke-width="7"/>
+  <path d="M23 68h18l13-30 17 52 12-24h22" fill="none" stroke="#72fff0" stroke-width="9" stroke-linecap="square" stroke-linejoin="round"/>
+</svg>

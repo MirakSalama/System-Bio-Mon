@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="referrer" content="no-referrer" />
+    <title>System Bio Mon</title>
+    <link rel="icon" href="brand.svg" />
+    <link rel="stylesheet" href="themes.css" />
+    <link rel="stylesheet" href="dashboard.css" />
+    <script src="vitals.js"></script>
+    <script src="dashboard.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="brand">
+          <img class="brand-mark" src="brand.svg" width="38" height="38" alt="" />
+          <h1>System <span>Bio</span> Mon</h1>
+        </div>
+        <nav aria-label="Monitor tools">
+          <button id="overlay-btn" hidden>Overlay</button
+          ><button id="share-btn" hidden>Share</button
+          ><button id="settings-btn" hidden>Settings</button>
+        </nav>
+      </header>
+      <section aria-labelledby="overview">
+        <div class="section-head">
+          <div>
+            <h2 id="overview">System vitals</h2>
+            <div id="status" role="status">Connecting to sensors…</div>
+          </div>
+          <div class="view-tools">
+            <label>Theme<select id="theme" aria-label="Theme"></select></label>
+            <label
+              >View
+              <select id="view" aria-label="View">
+                <option value="full">Cards</option>
+                <option value="v">Compact</option>
+              </select></label
+            >
+            <label
+              >History
+              <select id="range" aria-label="History">
+                <option value="60">60 seconds</option>
+                <option value="300">5 minutes</option>
+              </select></label
+            >
+          </div>
+        </div>
+        <div id="alerts" role="status" hidden></div>
+        <section id="game" hidden></section>
+        <div id="cards"></div>
+      </section>
+    </main>
+    <dialog id="overlay-dialog" aria-labelledby="overlay-title">
+      <div class="dialog-head">
+        <h2 id="overlay-title">Overlay</h2>
+        <button type="button" class="close" aria-label="Close overlay settings">
+          ×
+        </button>
+      </div>
+      <label class="field toggle"
+        >Show always-on-top overlay<input id="ov-show" type="checkbox"
+      /></label>
+      <div class="field toggle">
+        <span>
+          <label for="ov-game-only">Only show during games</label>
+          <small id="ov-game-help">Hides the overlay when you switch away from the game.</small>
+        </span>
+        <input id="ov-game-only" type="checkbox" aria-describedby="ov-game-help" />
+      </div>
+      <label class="field toggle"
+        >Lock position and pass clicks through<input
+          id="ov-lock"
+          type="checkbox"
+          checked
+      /></label>
+      <label class="field"
+        >Vitals shown<select id="ov-density">
+          <option value="essential">Essentials</option>
+          <option value="selected">My selected metrics</option>
+          <option value="full">All available sensors</option>
+        </select></label
+      >
+      <label class="field"
+        >Layout<select id="ov-layout">
+          <option value="h">Horizontal strip</option>
+          <option value="v">Stacked rows</option>
+        </select></label
+      >
+      <label class="field"
+        >Position<select id="ov-position">
+          <option value="">Choose a position…</option>
+          <option value="tl">Top left</option>
+          <option value="tc">Top center</option>
+          <option value="tr">Top right</option>
+          <option value="bl">Bottom left</option>
+          <option value="bc">Bottom center</option>
+          <option value="br">Bottom right</option>
+        </select></label
+      >
+      <label class="field"
+        >Text size<select id="ov-size">
+          <option value="12">Small</option>
+          <option value="14">Medium</option>
+          <option value="17">Large</option>
+        </select></label
+      >
+      <label class="field"
+          >Background opacity
+        <span class="range-field"
+          ><input
+            type="range"
+            min="15"
+            max="100"
+            step="5"
+            id="ov-opacity" /><output id="opacity-out"></output></span
+      ></label>
+      <label class="field toggle"
+        >Show trend lines<input id="ov-graphs" type="checkbox"
+      /></label>
+    </dialog>
+    <dialog id="share-dialog" aria-labelledby="share-title">
+      <div class="dialog-head">
+        <h2 id="share-title">Phone dashboard</h2>
+        <button class="close" aria-label="Close phone dashboard settings">
+          ×
+        </button>
+      </div>
+      <p id="share-info">
+        Share a read-only view with a phone or tablet on the same network.
+      </p>
+      <div id="share-details" hidden>
+        <img
+          id="qr"
+          width="210"
+          height="210"
+          alt="Scan to open the phone dashboard"
+        /><label>Pairing link<input id="pair-url" readonly /></label>
+      </div>
+      <button class="primary" id="share-toggle">Start sharing</button>
+    </dialog>
+    <dialog id="settings-dialog" aria-labelledby="settings-title">
+      <div class="dialog-head">
+        <h2 id="settings-title">Monitor settings</h2>
+        <button class="close" aria-label="Close monitor settings">×</button>
+      </div>
+      <div class="dialog-scroll">
+        <label class="field toggle" id="pin-field" hidden
+          >Keep dashboard on top<input id="pin" type="checkbox"
+        /></label>
+        <label class="field"
+          >Dashboard refresh rate<select id="hz"></select
+        ></label>
+        <div id="sensor-settings"></div>
+        <h3>Displayed metrics</h3>
+        <div id="metrics-settings"></div>
+        <h3>Threshold alerts</h3>
+        <div id="rules"></div>
+        <button id="add-rule">Add alert</button>
+      </div>
+      <footer>
+        <button class="close">Cancel</button
+        ><button id="save" class="primary">Save settings</button>
+      </footer>
+    </dialog>
+    <div id="notice" role="status" hidden></div>
+  </body>
+</html>

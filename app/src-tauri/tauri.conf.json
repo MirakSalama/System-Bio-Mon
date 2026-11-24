@@ -1,0 +1,57 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "System Bio Mon",
+  "version": "1.0.0",
+  "identifier": "com.mirak.gpu-dual-monitor",
+  "build": {
+    "frontendDist": "../../ui"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "title": "System Bio Mon",
+        "width": 940,
+        "height": 760,
+        "minWidth": 480,
+        "minHeight": 400
+      },
+      {
+        "label": "overlay",
+        "title": "System Bio Mon Overlay",
+        "url": "overlay.html",
+        "width": 780,
+        "height": 44,
+        "x": 560,
+        "y": 16,
+        "decorations": false,
+        "transparent": true,
+        "shadow": false,
+        "alwaysOnTop": true,
+        "skipTaskbar": true,
+        "resizable": false,
+        "visible": false,
+        "focus": false,
+        "focusable": false
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; connect-src 'self' ipc: http://ipc.localhost; img-src 'self' data:; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "publisher": "MirakSalama",
+    "copyright": "Copyright © 2026 MirakSalama",
+    "targets": ["nsis"],
+    "windows": { "nsis": { "installMode": "perMachine" } },
+    "resources": {
+      "../../LICENSE": "LICENSE.txt",
+      "resources/sensors/": "resources/sensors/",
+      "resources/presentmon/": "resources/presentmon/",
+      "resources/AMD-ADLX-LICENSE.txt": "resources/AMD-ADLX-LICENSE.txt",
+      "resources/RUST-NOTICES.txt": "resources/RUST-NOTICES.txt"
+    },
+    "icon": ["icons/icon.ico", "icons/32x32.png", "icons/128x128.png", "icons/128x128@2x.png"]
+  }
+}

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>System Bio Mon Overlay</title>
+    <link rel="stylesheet" href="themes.css" />
+    <link rel="stylesheet" href="overlay.css" />
+    <script src="vitals.js"></script>
+    <script src="overlay.js" defer></script>
+  </head>
+  <body>
+    <main id="hud" aria-label="System vitals">
+      <span id="waiting">Waiting for readings…</span>
+      <section id="game" hidden></section>
+      <div id="graphics" class="group" hidden>
+        <div id="columns" aria-hidden="true"></div>
+      </div>
+      <div id="host" class="group" hidden></div>
+    </main>
+  </body>
+</html>

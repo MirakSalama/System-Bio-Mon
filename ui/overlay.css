@@ -1,0 +1,331 @@
+:root {
+  font: 12px/1.1 var(--sans);
+  color: var(--text);
+  --alpha: 0.97;
+  --limit: 95vw;
+  --gap: 0.48em;
+  --plot-width: 2.35em;
+  --plot-col: ;
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  background: transparent;
+  overflow: hidden;
+  user-select: none;
+}
+#hud {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: max-content;
+  max-width: var(--limit);
+  background: rgb(var(--hud-rgb) / var(--alpha));
+  border: 1px solid var(--outline);
+  border-radius: min(6px, var(--corner));
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 2px rgb(var(--hud-rgb)), 0 1px 1px rgb(var(--hud-rgb) / 0.8);
+}
+body.moving #hud {
+  border-color: var(--warning);
+  cursor: move;
+}
+#waiting {
+  padding: 4px 7px;
+}
+#game {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  gap: var(--gap);
+  padding: 0.25em 0.55em;
+}
+#game:not([hidden]) ~ .group:not([hidden]) {
+  border-inline-start: 1px solid var(--line);
+}
+body.stacked #game:not([hidden]) ~ .group:not([hidden]) {
+  border-inline-start: 0;
+  border-top: 1px solid var(--line);
+}
+#game .game-title {
+  display: none;
+}
+.game-values {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.1em 0.68em;
+}
+.game-metric {
+  display: inline-flex;
+  align-items: baseline;
+  white-space: nowrap;
+}
+.game-label {
+  color: var(--muted);
+  font-size: 0.92em;
+  margin-inline-end: 0.28em;
+}
+.game-metric:first-child .game-label {
+  color: var(--accent);
+  font-weight: 700;
+}
+.game-metric:last-child .game-label {
+  /* Milliseconds identify frame time at HUD size. The full label is accessible. */
+  display: none;
+}
+.game-number {
+  min-width: 2.8ch;
+  text-align: right;
+  font-size: 1.08em;
+}
+.game-unit {
+  color: var(--muted);
+  margin-inline-start: 0.13em;
+}
+.game-status {
+  color: var(--warning);
+}
+body.stacked #game canvas {
+  margin-inline-start: auto;
+}
+.group {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+#columns,
+[hidden] {
+  display: none !important;
+}
+.device {
+  --device: var(--system);
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  min-width: 0;
+  max-width: 100%;
+  padding: 0.25em 0.55em;
+  border-radius: 3px;
+}
+.device + .device,
+#graphics:not([hidden]) + #host {
+  border-inline-start: 1px solid var(--line);
+}
+.device[data-vendor="nvidia"] {
+  --device: var(--nvidia);
+}
+.device[data-vendor="amd"] {
+  --device: var(--amd);
+}
+.device[data-vendor="intel"] {
+  --device: var(--intel);
+}
+.device[data-kind="battery"] {
+  --device: var(--battery);
+}
+.name {
+  color: var(--device);
+  font-weight: 680;
+  font-size: 1em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 13em;
+}
+.values {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.24em 0.64em;
+  min-width: 0;
+}
+.reading {
+  display: inline-flex;
+  align-items: baseline;
+  white-space: nowrap;
+}
+.caption {
+  color: var(--muted);
+  font-size: 0.92em;
+  margin-inline-end: 0.28em;
+}
+.number {
+  font-weight: 670;
+  font-size: 1.08em;
+}
+.unit {
+  color: var(--muted);
+  font-size: 0.92em;
+  margin-inline-start: 0.13em;
+}
+.unit:empty {
+  margin: 0;
+}
+.status {
+  color: var(--warning);
+  font-size: 0.93em;
+  white-space: nowrap;
+}
+.device.alert {
+  box-shadow: inset 2px 0 var(--warning);
+}
+.device.alert .name::before {
+  content: "! ";
+  color: var(--warning);
+}
+#host .device[data-kind="cpu"] {
+  order: -2;
+}
+#host .device[data-kind="sys"] {
+  order: -1;
+}
+.device.off .name {
+  color: var(--muted);
+}
+canvas {
+  color: var(--device, var(--secondary));
+  width: var(--plot-width);
+  height: 1.05em;
+  flex: none;
+}
+body.stacked #hud,
+body.stacked #graphics {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+}
+body.essential.stacked #hud {
+  width: min(23em, var(--limit));
+}
+body.essential.stacked #columns:not([hidden]) {
+  display: grid !important;
+  padding: 0.28em 0.55em 0.14em;
+  color: var(--muted);
+}
+body.essential.stacked #columns,
+body.essential.stacked #graphics .device {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(
+      --readout-cols,
+      3.1em 3.4em 5.3em
+    ) var(--plot-col);
+  gap: var(--gap);
+  align-items: baseline;
+}
+body.essential.stacked.graphs {
+  --plot-col: var(--plot-width);
+}
+#columns span {
+  font-size: 0.86em;
+  text-align: right;
+}
+#columns span:first-child {
+  text-align: left;
+}
+body.essential.stacked #graphics .values {
+  display: contents;
+}
+body.essential.stacked #graphics .reading {
+  justify-self: end;
+}
+body.essential.stacked #graphics canvas {
+  align-self: center;
+}
+body.essential.stacked #graphics .caption {
+  display: none;
+}
+body.essential .device.off .values {
+  display: none !important;
+}
+body.essential.stacked #graphics .device.off .status {
+  grid-column: 2/-1;
+  text-align: right;
+}
+body.stacked .device + .device,
+body.stacked #graphics:not([hidden]) + #host {
+  border-inline-start: 0;
+}
+body.stacked #graphics:not([hidden]) + #host {
+  border-top: 1px solid var(--line);
+}
+body.essential.stacked #host {
+  gap: 0;
+}
+body.essential.stacked #host .device {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  align-content: start;
+  flex: 1 1 6em;
+  gap: 0.13em 0.2em;
+  padding: 0.29em 0.55em 0.33em;
+}
+body.essential.stacked #host .device:not([data-kind="battery"]):has(.reading + .reading) {
+  flex-grow: 2;
+  flex-basis: 11em;
+}
+body.essential.stacked #host .device + .device {
+  border-inline-start: 1px solid var(--line);
+}
+body.essential.stacked #host .name {
+  grid-column: 1;
+  grid-row: 1;
+  font-size: 0.92em;
+}
+body.essential.stacked #host canvas {
+  grid-column: 2;
+  grid-row: 1;
+  width: 1.65em;
+  height: 0.85em;
+}
+body.essential.stacked #host :is(.status, .values) {
+  grid-column: 1/-1;
+  grid-row: 2;
+}
+body.essential.stacked #host .number {
+  min-width: 0;
+}
+body.essential .number {
+  text-align: right;
+}
+body.essential
+  :is(
+    [data-metric="usage"],
+    [data-metric="temperature"],
+    [data-metric="cpu"],
+    [data-metric="batteryCharge"]
+  )
+  .number {
+  min-width: 3ch;
+}
+body.essential :is([data-metric="ram"], [data-metric="vramUsed"]) .number {
+  min-width: 3.4ch;
+}
+body:not(.essential) .device {
+  flex-wrap: wrap;
+  width: max-content;
+  max-width: min(var(--limit), 30em);
+}
+body:not(.essential) .name {
+  flex: 1;
+}
+body:not(.essential) .values {
+  order: 1;
+  flex: 1 0 100%;
+}
+body:not(.essential).stacked .group {
+  flex-direction: column;
+  align-items: stretch;
+}
+body:not(.essential).stacked .device {
+  width: 100%;
+}
+body:not(.essential).stacked .device + .device {
+  border-top: 1px solid var(--line);
+}

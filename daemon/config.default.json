@@ -1,0 +1,8 @@
+{
+  "pollHz": 1,
+  "assignments": {
+    "default": ["usage", "temperature", "power", "vramUsed", "clock"],
+    "perGpu": {}
+  },
+  "alerts": [{ "gpu": "*", "metric": "temperature", "op": ">", "value": 85 }]
+}

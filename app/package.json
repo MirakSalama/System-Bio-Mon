@@ -1,0 +1,10 @@
+{
+  "name": "system-bio-mon",
+  "version": "1.0.0",
+  "description": "System Bio Mon desktop build tools",
+  "private": true,
+  "license": "MIT",
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.12.3"
+  }
+}

@@ -1,0 +1,29 @@
+HardwareSensors.exe is the System Bio Mon sensor helper. Its source and
+build.ps1 are in app/sensors in the application source tree. It uses the
+Windows .NET Framework and the unmodified libraries shipped in the official
+LibreHardwareMonitor v0.9.6 release.
+
+LibreHardwareMonitorLib.dll (Mozilla Public License 2.0)
+Source: https://github.com/LibreHardwareMonitor/LibreHardwareMonitor/tree/v0.9.6
+Upstream archive: https://github.com/LibreHardwareMonitor/LibreHardwareMonitor/releases/download/v0.9.6/LibreHardwareMonitor.zip
+Archive SHA-256: 086d9f1b5a99e643edc2cfaaac16051685b551e4c5ac0b32a57c58c0e529c001
+See LICENSE-LibreHardwareMonitor.txt and THIRD-PARTY-NOTICES.txt.
+PawnIO module source: https://github.com/namazso/PawnIO.Modules
+
+BlackSharp.Core 1.0.7, DiskInfoToolkit 1.1.2, and RAMSPDToolkit-NDD 1.4.2
+Copyright Florian K. Licensed under the Mozilla Public License 2.0,
+included in LICENSE-LibreHardwareMonitor.txt. Sources:
+https://github.com/Blacktempel/BlackSharp/tree/c70b735c6cec123ee8a046ac4a0bc6c606f52cf0
+https://github.com/Blacktempel/DiskInfoToolkit/tree/25319eae5781e75bcf141e844ceab2afe94d40ea
+https://github.com/Blacktempel/RAMSPDToolkit/tree/3b47b960e0830fef344624ad5e389675d5f0a1ce
+
+HidSharp 2.6.4: Copyright 2010–2025 James Bellinger.
+Apache License 2.0, included in LICENSE-HidSharp.txt.
+https://www.nuget.org/packages/HidSharp/2.6.4
+
+System.* and Microsoft.Bcl.* runtime libraries: .NET Foundation and
+contributors. MIT license, included in LICENSE-DotNet.txt.
+https://github.com/dotnet/runtime
+
+Optional PawnIO driver setup is obtained from its publisher when requested.
+https://github.com/namazso/PawnIO.Setup/releases/tag/2.2.0
